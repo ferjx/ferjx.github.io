@@ -418,11 +418,49 @@ $(function(){
 
 	// ctrlPpnl-s8__list
 	$('.ctrlPpnl-s8__list').lightGallery({
-		thumbnail:true
+		thumbnail:true,
+		// animateThumb: false,
+		thumbWidth: 80
+		
 	}); 
 
 
 });
+
+
+
+
+
+// http://localhost:3000/index.html
+// скрипт от пропорции
+// $(document).ready(function() {
+// 	var win = $(window).width();
+// 	// slider padding
+// 	var wid = $(window).width();
+// 	var mvid = $('.main').width();
+// 	var pad = (wid - mvid) / 2;
+// 	$('.ci').css({
+// 		'padding-left': pad,
+// 		'padding-right': pad
+// 	});
+
+// 	function setImgHeight() {
+// 		// setHeight('image-popup-s8-margins img');
+// 		// setHeight('ctrlPpnl-s8__list-inner');
+// 	}
+// 	$(window).resize(setImgHeight);
+// 	setImgHeight();
+
+// 	function setHeight(cname) {
+// 		var w = $('.' + cname).width();
+// 		var h = (w / 1.66);
+// 		$('.' + cname).css('height', h);
+// 	}
+// });
+
+
+
+
 
 
 // ***
