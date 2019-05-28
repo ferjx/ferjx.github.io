@@ -1,3 +1,134 @@
+// scroll-bar
+(function($){
+	$(window).on("load",function(){
+		$(".textImg").mCustomScrollbar({
+			theme:"my-theme",
+			scrollButtons:{
+				enable:true
+			}
+		});
+	});
+})(jQuery);
+
+
+
+$(function(){
+	var lblockNav = $('.content-wrapper .sidebar').outerHeight();
+	console.log(lblockNav);
+	$('body').append('<div>helloWorld</div>').css('color','red');
+});
+
+
+
+// input auto width domain-bases.html
+$(function(){
+		$.fn.textWidth = function(text, font) {
+				if (!$.fn.textWidth.fakeEl) $.fn.textWidth.fakeEl = $('<span>').hide().appendTo(document.body);
+				
+				$.fn.textWidth.fakeEl.text(text || this.val() || this.text() || this.attr('placeholder')).css('font', font || this.css('font'));
+				
+				return $.fn.textWidth.fakeEl.width();
+		};
+		$('.s10_inputForm').on('input', function() {
+				var inputWidth = $(this).textWidth() + 50;
+				console.log(inputWidth);
+				$(this).css({
+						width: inputWidth
+				})
+		}).trigger('input');
+		function inputWidth(elem, minW, maxW) {
+				elem = $(this);
+				console.log(elem)
+		}
+		var targetElem = $('.s10_inputForm');
+		inputWidth(targetElem);
+});
+
+
+
+
+// обрезать строку index.html, blog.html
+$(function(){
+	// s2-card__text
+	$(".s2-card__text>p:nth-child(2)").text(function(i, text) {
+			if (text.length >= 50) {
+				text = text.substring(0, 40);
+				var lastIndex = text.lastIndexOf(" ");       // позиция последнего пробела
+				text = text.substring(0, lastIndex) + '...'; // обрезаем до последнего слова
+			}
+			$(this).text(text);
+	});
+	$('.s2-card__text > p').not('.s2-card__text p:nth-child(-n+2)').remove();
+
+
+	// s4-blog__text
+	$(".s4-block__items p:first-of-type").text(function(i, text) {
+			if (text.length >= 50) {
+				text = text.substring(0, 479);
+				var lastIndex = text.lastIndexOf(" ");       // позиция последнего пробела
+				text = text.substring(0, lastIndex) + '...'; // обрезаем до последнего слова
+			}
+			$(this).text(text);
+	});
+	$('.s4-block__items p').not('.s4-block__items p:first-of-type').remove();
+
+	// s5-news__items
+	$(".s5-news__items p:first-of-type").text(function(i, text) {
+			if (text.length >= 50) {
+				text = text.substring(0, 479);
+				var lastIndex = text.lastIndexOf(" ");       // позиция последнего пробела
+				text = text.substring(0, lastIndex) + '...'; // обрезаем до последнего слова
+			}
+			$(this).text(text);
+	});
+	$('.s5-news__items p').not('.s5-news__items p:first-of-type').remove();
+});
+
+
+
+
+// index.html btn-card open-close
+$(function(){
+		var sizeHeightCardLi = $(".s2-card li").outerHeight(true);
+
+		if ($(window).width() >= 577) {
+			if( $(".s2-card li").length >= 3 ) {
+					$('.s2-card').css({
+						"height" : sizeHeightCardLi,
+						// "marginBottom" : "20px",
+						"overflow" : "hidden"
+					})
+			}
+		}else if ($(window).width() <= 576) {
+				sizeHeightCardLi *= 2;
+				$('.s2-card').css({
+					"height" : sizeHeightCardLi,
+					// "marginBottom" : "20px",
+					"overflow" : "hidden"
+					// "background" : "red"
+				})
+		}
+
+		$(".cardBtn-opp").on("click", function(e) {
+				e.preventDefault();
+
+				if( $(".s2-card").css("overflow") == "hidden" ) {
+						$('.s2-card').removeAttr("style");
+						$(this > "span").addClass("cardBtn-close");
+						$(this).html("скрыть новости");
+				}else {
+						$('.s2-card').css({
+							"height" : sizeHeightCardLi,
+							// "marginBottom" : "20px",
+							"overflow" : "hidden"
+						})
+						$(this).html("<span>все новости</span>");
+				}
+		});
+});
+
+
+
 // hide-show top navigation
 $(document).ready(function() {
 
@@ -17,7 +148,7 @@ $(document).ready(function() {
 			"overflow": "hidden"
 		});
 		$('.hide-menu').show();
-		$('.top-navigation').append('<div class="btnCloce">&#10006;</div>');
+		$('.top-navigation').append('<div class="btnCloce"><span>&#10006;</span></div>');
 		// $('.btnCloce').show();
 
 		$('.btnCloce').click(function() {
@@ -36,7 +167,6 @@ $(document).ready(function() {
 			$('.btnCloce').remove();
 		});
 	});
-
 
 	$('.hide-menu').click(function() {
 		$('.top-navigation').css({
@@ -69,8 +199,6 @@ $(document).ready(function() {
 		$('.hide-menu').hide();
 		$('.btnCloce').remove();
 	});
-
-
 
 	// на всякий пожарный. скрипт от дома
 	$('.mobile-button').click(function(e) {
@@ -107,7 +235,7 @@ $(document).ready(function() {
 
 
 
-// #1 - ускорить YouTube
+// ускорить YouTube
 'use strict';
 function r(f){/in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
 r(function(){
@@ -156,14 +284,6 @@ r(function(){
 
 
 
-// form-s11
-// $(function(){
-//  $(".form-s11__input").on("click", function(){
-//    $(this).prev(".form-s11__label").css("color", "red");
-//  });
-// });
-
-
 
 // accordion: faq vLessons-s16
 $(function(){
@@ -173,126 +293,12 @@ $(function(){
 		collapsible: true,
 		heightStyle: 'content',
 		active: false
-
-
 	});
 });
-
-
-// ul li balance-s17
-// $(function(){
-//     $('.balance-s17__sList-Item').each(function(){
-//       if( $(this).text().length > 168 ) $(this).css('line-height', '27px')
-//     })
-// });
-
-
-// .news-s19__select
-$( function() {
-		$( ".speed-one" ).selectmenu();
-});
-
-
-
-// s20AddFile__fileWrap
-// input:file
-$( function() {
-
-	'use strict';
-
-	;( function ( document, window, index )
-	{
-		var inputs = document.querySelectorAll( '.inputfile' );
-		Array.prototype.forEach.call( inputs, function( input )
-		{
-			var label	 = input.nextElementSibling,
-				labelVal = label.innerHTML;
-
-			input.addEventListener( 'change', function( e )
-			{
-				var fileName = '';
-				if( this.files && this.files.length > 1 )
-					fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-				else
-					fileName = e.target.value.split( '\\' ).pop();
-
-				if( fileName )
-					label.querySelector( 'span' ).innerHTML = fileName;
-				else
-					label.innerHTML = labelVal;
-			});
-
-			// Firefox bug fix
-			input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-			input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
-		});
-	}( document, window, 0 ));
-
-});
-
-
-
-// s20AddFile__addFile
-// input:file
-// $( function() {
-
-// 	$('.s20AddFile__addFile').on('click', function(e){
-// 		e.preventDefault();
-
-// 		var button = $('.s20AddFile__addFile');
-// 		var uniqueId = 'copy_' + parseInt(Math.random() * 99999);
-// 		var copyBlock = $('.s20AddFile__fileWrap:eq(0)');
-// 		var copyLink = $('.return-but:eq(0)');
-
-// 		var cloneBlock = copyBlock
-// 				.clone()
-// 				.addClass('additional')
-// 				.addClass('active')
-// 				.attr('id', uniqueId + '_block');
-// 		var cloneLink = copyLink
-// 				.clone()
-// 				.show()
-// 				.attr('id', uniqueId + '_link');
-// 		$( button ).before( cloneLink );
-// 		$( button ).before( cloneBlock );
-
-// 		cloneLink.one('click', function(){
-// 			$(this).remove();
-// 			$('#' + $(this).attr('id').replace('_link', '_block')).remove();
-// 		});
-// 	});
-
-// });
-
-
-
-
-
-
-// tooltip text 
-$( function() {
-	$( ".pricesb-box__text-vpliv" ).tooltip();
-} );
-
-// tooltip text 
-$( function() {
-	$( ".pricesb-box__text-vplivError" ).tooltip({
-		classes: {
-			"ui-tooltip": "ui-tooltipError"
-		}
-	});
-} );
-
-
 
 
 // Textarea
-// jquery cod
-$( function() {
-	// autosize($('textarea'));
-});
-
-// textareaResizer.js 
+// contacts.html
 // Растяжка текстовых полей по вертикали
 var minH=100;// Минимальная высота поля
 var startH=0;
@@ -329,141 +335,5 @@ function textareaResizer_moveHandler(e){
 function textareaResizer_cleanup(e) {
 	document.onmousemove=oldMouseMove;
 	document.onmouseup=oldMouseUp;
-}
+};
 
-
-
-
-
-
-// news-s23
-//Повидение для кнопКИ "Читать полностью" (паказать контент при клике)
-$(function(){
-	$('.news-s23__toggle').on('click', function(e){
-		e.preventDefault();
-		var contentId = $(this).prev();
-
-		if( $(this).hasClass('active') ){
-			$(this).removeClass('active');
-			$(contentId).removeClass('active');
-		}else{
-			$(this).addClass('active');
-			$(contentId).addClass('active');
-		}
-	});
-
-	// скрывает если меньше по ширине
-	$(".news-s23__wrapText").each(function(){
-		if( $(this).height() < 175 )
-		{
-			$(this).next().hide();
-		}
-	});
-});
-
-
-
-
-// popup s26
-$(function(){
-	$('.popup-with-zoom-anim').magnificPopup({
-		type: 'inline',
-
-		fixedContentPos: true,
-		fixedBgPos: true,
-
-		overflowY: 'auto',
-
-		closeBtnInside: true,
-		preloader: false,
-		
-		midClick: true,
-		removalDelay: 300,
-		mainClass: 'my-mfp-zoom-in'
-	});
-});
-
-
-
-// s28-check__input-email_tel
-// MASKED INPUT PLUGIN index
-$(function(){
-	 $(".s28-check__input-email_tel").mask("+9 (999) 999-99-99");
-});
-
-
-
-
-// ctrlPpnl-s8__list
-$(function(){
-	// $('.ctrlPpnl-s8__list').magnificPopup({
-	// 	delegate: 'a',
-	// 	type: 'image',
-	// 	closeOnContentClick: true,
-	// 	closeBtnInside: false,
-	// 	fixedContentPos: true,
-	// 	mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
-	// 	image: {
-	// 		verticalFit: true
-	// 	},
-	// 	zoom: {
-	// 		enabled: true,
-	// 		duration: 300 // don't foget to change the duration also in CSS
-	// 	},
-	// 	gallery: {
-	// 		enabled: true
-	// 	}
-
-	// });
-
-	// ctrlPpnl-s8__list
-	$('.ctrlPpnl-s8__list').lightGallery({
-		thumbnail:true,
-		// animateThumb: false,
-		thumbWidth: 80
-		
-	}); 
-
-
-});
-
-
-
-
-
-// http://localhost:3000/index.html
-// скрипт от пропорции
-// $(document).ready(function() {
-// 	var win = $(window).width();
-// 	// slider padding
-// 	var wid = $(window).width();
-// 	var mvid = $('.main').width();
-// 	var pad = (wid - mvid) / 2;
-// 	$('.ci').css({
-// 		'padding-left': pad,
-// 		'padding-right': pad
-// 	});
-
-// 	function setImgHeight() {
-// 		// setHeight('image-popup-s8-margins img');
-// 		// setHeight('ctrlPpnl-s8__list-inner');
-// 	}
-// 	$(window).resize(setImgHeight);
-// 	setImgHeight();
-
-// 	function setHeight(cname) {
-// 		var w = $('.' + cname).width();
-// 		var h = (w / 1.66);
-// 		$('.' + cname).css('height', h);
-// 	}
-// });
-
-
-
-
-
-
-// ***
-$(function(){
-	// document.styleSheets[0].disabled = true;
-});
