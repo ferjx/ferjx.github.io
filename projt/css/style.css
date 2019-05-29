@@ -13,14 +13,15 @@
   font-weight: normal; }
 
 @font-face {
-  font-family: 'CoconRegular-Kbaza';
-  src: local("CoconRegular"), url("../fonts/coconregular/CoconRegular.woff") format("woff"), url("../fonts/coconregular/CoconRegular.ttf") format("truetype");
+  font-family: 'ProximaNovaRegular-Kbaza';
+  src: local("ProximaNovaRegular"), url("../fonts/proximanovaregular/ProximaNovaRegular.woff") format("woff"), url("../fonts/proximanovaregular/ProximaNovaRegular.ttf") format("truetype");
   font-style: normal;
   font-weight: normal; }
 
 @font-face {
-  font-family: 'ProximaNovaRegular-Kbaza';
-  src: local("ProximaNovaRegular"), url("../fonts/proximanovaregular/ProximaNovaRegular.woff") format("woff"), url("../fonts/proximanovaregular/ProximaNovaRegular.ttf") format("truetype");
+  font-family: 'CoconRegular-Kbaza';
+  src: url("../fonts/coconregular/CoconRegular.otf");
+  src: local("CoconRegular"), url("../fonts/coconregular/CoconRegular.otf") format("opentype"), url("../fonts/coconregular/CoconRegular.woff") format("woff");
   font-style: normal;
   font-weight: normal; }
 
@@ -1629,6 +1630,7 @@ _:-ms-fullscreen, :root .header-top__title {
           flex-direction: row; }
 
 .sidebar {
+  position: relative;
   padding: 12px 15px;
   margin-right: 20px;
   max-width: 310px;
@@ -1792,7 +1794,7 @@ _:-ms-fullscreen, :root .sidebar {
       color: #ffffff;
       font-family: "CoconRegular-Kbaza";
       font-size: 68px;
-      line-height: 89px;
+      line-height: 80px;
       text-align: center; }
     .s2-card .title-black:after {
       display: inline-block;
@@ -1803,7 +1805,8 @@ _:-ms-fullscreen, :root .sidebar {
       margin-left: 5px; }
 
 .s2-card__link {
-  position: relative; }
+  position: relative;
+  display: inline !important; }
   .s2-card__link:after {
     content: '..';
     position: absolute;
@@ -2092,14 +2095,29 @@ _:-ms-fullscreen, :root .sidebar {
       border-bottom: 1px solid rgba(4, 120, 112, 0); }
 
 .s4-block {
+  position: relative;
   margin-bottom: 0;
-  padding: 10px 30px 10px 30px; }
+  padding: 10px 30px 10px 30px;
+  padding-top: 0;
+  padding-bottom: 0; }
 
 .s4-block__items {
   padding-bottom: 20px;
   border-bottom: 1px solid #8eb2a8; }
   .s4-block__items:last-of-type {
     border-bottom: 0 none; }
+    .s4-block__items:last-of-type .s4-blog__text:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, white 100%);
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(white));
+      background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, white 100%);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); }
 
 .s4-blog__title {
   margin: 17px 0 0;
@@ -2108,6 +2126,7 @@ _:-ms-fullscreen, :root .sidebar {
   font-size: 24px; }
 
 .s4-blog__text {
+  position: relative;
   margin-top: 10px; }
 
 .s5-news {
@@ -2117,6 +2136,8 @@ _:-ms-fullscreen, :root .sidebar {
     .s5-news .s4-blog__title:after {
       counter-increment: ruleOl-s5-news;
       content: " " counter(ruleOl-s5-news); }
+  .s5-news .s4-blog__text {
+    margin-bottom: 9px; }
 
 .s5-news__items {
   padding: 0 30px 20px 30px; }
@@ -2143,7 +2164,7 @@ _:-ms-fullscreen, :root .sidebar {
     color: #ffffff;
     font-family: "CoconRegular-Kbaza";
     font-size: 68px;
-    line-height: 89px;
+    line-height: 80px;
     text-align: center; }
 
 .content-bottom {
@@ -2170,7 +2191,7 @@ _:-ms-fullscreen, :root .sidebar {
     position: relative;
     width: 30px;
     height: 30px;
-    line-height: 29px;
+    line-height: 25px;
     font-size: 24px;
     -webkit-border-radius: 2px;
             border-radius: 2px;
@@ -2458,7 +2479,7 @@ _:-ms-fullscreen, :root .sidebar {
       color: #fff;
       font-family: "CoconRegular-Kbaza";
       font-size: 20px;
-      line-height: 25px;
+      line-height: 23px;
       text-align: center; }
 
 .s8-Block h1, .s8-Block h2 {
@@ -2547,7 +2568,7 @@ _:-ms-fullscreen, :root .sidebar {
       color: #fff;
       font-family: "CoconRegular-Kbaza";
       font-size: 20px;
-      line-height: 25px;
+      line-height: 23px;
       text-align: center; }
 
 .s8-Block time {
@@ -3249,7 +3270,7 @@ _:-ms-fullscreen, :root .sidebar {
     width: 46px;
     height: 45px;
     font-size: 38px;
-    line-height: 46px; }
+    line-height: 41px; }
   .s2-card li:nth-child(3n+3) {
     border-right: 1px solid #dceaee; }
   .s2-card li:nth-child(2n) {
@@ -3464,6 +3485,8 @@ _:-ms-fullscreen, :root .sidebar {
   .present-number__item:last-of-type:before,
   .present-number__item:last-of-type:after {
     display: none; }
+  .s5-news .s4-blog__text p {
+    line-height: 20px; }
   .s16-Block .js-ui-accordion__title {
     text-align: left;
     padding: 1.0rem 4.0rem 1.0rem 1.5rem;

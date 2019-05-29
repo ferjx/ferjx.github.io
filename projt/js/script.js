@@ -12,12 +12,6 @@
 
 
 
-$(function(){
-	var lblockNav = $('.content-wrapper .sidebar').outerHeight();
-	console.log(lblockNav);
-	$('body').append('<div>helloWorld</div>').css('color','red');
-});
-
 
 
 // input auto width domain-bases.html
@@ -31,14 +25,12 @@ $(function(){
 		};
 		$('.s10_inputForm').on('input', function() {
 				var inputWidth = $(this).textWidth() + 50;
-				console.log(inputWidth);
 				$(this).css({
 						width: inputWidth
 				})
 		}).trigger('input');
 		function inputWidth(elem, minW, maxW) {
 				elem = $(this);
-				console.log(elem)
 		}
 		var targetElem = $('.s10_inputForm');
 		inputWidth(targetElem);
@@ -61,8 +53,12 @@ $(function(){
 	$('.s2-card__text > p').not('.s2-card__text p:nth-child(-n+2)').remove();
 
 
+
+
+
 	// s4-blog__text
-	$(".s4-block__items p:first-of-type").text(function(i, text) {
+	// срезаем длину текста
+	$(".s4-block .s4-block__items p:first-of-type").text(function(i, text) {
 			if (text.length >= 50) {
 				text = text.substring(0, 479);
 				var lastIndex = text.lastIndexOf(" ");       // позиция последнего пробела
@@ -70,20 +66,75 @@ $(function(){
 			}
 			$(this).text(text);
 	});
-	$('.s4-block__items p').not('.s4-block__items p:first-of-type').remove();
+	// удаляем последние блоки
+	$('.s4-block .s4-block__items p').not('.s4-block .s4-block__items p:first-of-type, .s4-block .s4-block__items:last-of-type p').remove();
+
+
+
+	
+
+	
+	function block4S() {
+		var lBlockNav = 0,
+				positionSidebar = 0,
+				rBlockContent = 0,
+				positionContent = 0,
+				resultContent = 306;
+
+		if ($(window).width() >= 993){
+
+				// L block
+				lBlockNav 			= $('.content .sidebar__nav').outerHeight();
+				positionSidebar = $(".content .sidebar__nav").position();
+				if(positionSidebar) {
+					 positionSidebar = parseInt(positionSidebar.top * 2);
+				}
+
+				// R block
+				rBlockContent 	= $('.s4-block .s4-block__items:first-of-type').outerHeight();
+				positionContent = $(".s4-block .s4-block__items:first-of-type").position();
+				if(positionContent) {
+					 positionContent = parseInt(positionContent.top * 2);
+				}
+
+				lBlockNav 			= parseInt(lBlockNav + positionSidebar);
+				rBlockContent 	= parseInt((rBlockContent + positionContent) * 9);
+
+				var	lastBlockElemtH2	= $('.s4-block .s4-block__items:first-of-type .s4-blog__title').outerHeight();
+				var	lastBlockElemtDat	= $('.s4-block .s4-block__items:first-of-type .time ').outerHeight();
+				var	lastBlockElemtLin	= $('.s4-block .s4-block__items:first-of-type .s2-card__link ').outerHeight();
+				var elemtsResult 			= lastBlockElemtH2 + lastBlockElemtDat + lastBlockElemtLin;
+
+				// result
+				resultContent 				= Math.abs((lBlockNav - rBlockContent) + elemtsResult);
+				if(resultContent >= 306) {
+					resultContent = 306;
+				}
+		}
+
+		// устанавливаем высоту контент
+		$('.s4-block .s4-block__items:last-of-type .s4-blog__text').css({
+			"min-height" : resultContent,
+			"max-height" : resultContent,
+			"height" : 100 + "%",
+			'overflow' : 'hidden'
+		});
+	};
+
+	if( $(".s4-block").length ){
+		$(window).resize(block4S).trigger('resize');
+	};
+
 
 	// s5-news__items
-	$(".s5-news__items p:first-of-type").text(function(i, text) {
-			if (text.length >= 50) {
-				text = text.substring(0, 479);
-				var lastIndex = text.lastIndexOf(" ");       // позиция последнего пробела
-				text = text.substring(0, lastIndex) + '...'; // обрезаем до последнего слова
-			}
-			$(this).text(text);
+	// readmore
+	$('.s5-news .s4-blog__text').readmore({
+		maxHeight: 100,
+		// heightMargin: 14,
+		moreLink: '<a href="#" class="s2-card__link">Подробнее</a>',
+		lessLink: '<a href="#" class="s2-card__link">Скрыть</a>'
 	});
-	$('.s5-news__items p').not('.s5-news__items p:first-of-type').remove();
 });
-
 
 
 
