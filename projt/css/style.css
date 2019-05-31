@@ -915,8 +915,7 @@ body textarea:required:valid {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
-  overflow-x: hidden; }
+  height: 100%; }
 
 .content {
   -webkit-box-flex: 1;
@@ -1270,6 +1269,7 @@ h3.title-black {
 
 .header-top {
   position: relative;
+  overflow: hidden;
   z-index: 1; }
   .header-top:after {
     content: '';
